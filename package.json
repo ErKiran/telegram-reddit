@@ -1,0 +1,29 @@
+{
+  "name": "telegramreddit",
+  "version": "1.0.0",
+  "description": "Telegram bot that does sort by Top for you",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErKiran/telegram-reddit.git"
+  },
+  "keywords": [
+    "Telegram",
+    "bot",
+    "reddit",
+    "telegram"
+  ],
+  "author": "Kiran Adhikari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ErKiran/telegram-reddit/issues"
+  },
+  "homepage": "https://github.com/ErKiran/telegram-reddit#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "node-telegram-bot-api": "^0.30.0"
+  }
+}
