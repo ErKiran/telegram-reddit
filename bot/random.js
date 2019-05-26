@@ -56,6 +56,6 @@ bot.onText(/\/random/, async msg => {
 })
 
 bot.onText(/\/sub/, async msg => {
-    const res = await api.getSub();
+    const res = await api.stalk('kiru0');
     console.log(res)
 })

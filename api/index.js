@@ -16,7 +16,7 @@ module.exports = {
         if (res.length == 0) {
             return false;
         } else {
-            let max = []
+            let max = [];
             max = res.data.data.children.map(i => i.data.ups);
             const rand = Math.floor(Math.random() * max.length);
             const tosubmit = res.data.data.children.filter(i => i.data.ups == max[rand])
@@ -29,6 +29,10 @@ module.exports = {
         const rand = Math.floor(Math.random() * subs.length);
         const recommend = subs[rand];
         return recommend;
+    },
+    stalk: async function stalk(name) {
+        const res = await axios.get(`https://www.reddit.com/user/${name}.json`);
+        return res.data.data.children.filter(i => i.kind == 't1');
     }
 
 }

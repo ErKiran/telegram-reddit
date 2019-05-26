@@ -1,5 +1,6 @@
 const { bot } = require('./bot');
 const api = require('../api');
+const keyboard = require('../keyboard');
 
 
 bot.onText(/\/top/, async msg => {
@@ -47,10 +48,10 @@ bot.onText(/\/top/, async msg => {
                     bot.sendMessage(msg.chat.id, `Follow Discussion on \n ${data.url}`)
                 }
             } else {
-                bot.sendMessage(msg.chat.id, `There is no such sub-reddit as ${msg.text}`)
+                bot.sendMessage(msg.chat.id, `There is no such sub-reddit as ${msg.text}`);
+                bot.sendMessage(msg.chat.id, `Explore More`, { reply_markup: keyboard.startkeyboard });
             }
         }
-
     })
     const recommend = await api.getSub();
     bot.sendMessage(msg.chat.id, `🔍 Search the sub-reddit to get Top Voted Post. Try ${recommend}`)
