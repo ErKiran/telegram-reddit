@@ -1,11 +1,10 @@
 const { bot } = require('./bot');
 const api = require('../api');
 
-
-bot.onText(/\/top/, async msg => {
+bot.onText(/\/random/, async msg => {
     bot.once('message', async msg => {
         if (msg.text) {
-            const res = await api.getTop(msg.text);
+            const res = await api.getRandom(msg.text);
             if (!(res.length) == 0) {
                 const data = res[0].data;
                 if (data.post_hint == 'image') {
@@ -53,5 +52,10 @@ bot.onText(/\/top/, async msg => {
 
     })
     const recommend = await api.getSub();
-    bot.sendMessage(msg.chat.id, `🔍 Search the sub-reddit to get Top Voted Post. Try ${recommend}`)
+    bot.sendMessage(msg.chat.id, `🔍 Get Random posts from Sub-reddits. Wanna Try ${recommend}`)
+})
+
+bot.onText(/\/sub/, async msg => {
+    const res = await api.getSub();
+    console.log(res)
 })
