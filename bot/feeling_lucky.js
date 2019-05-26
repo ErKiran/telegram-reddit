@@ -1,9 +1,9 @@
 const { bot } = require('./bot');
-const api = require('../api');
+const { RedditWrapper } = require('reddit-simple');
 
 bot.onText(/\/feeling_lucky/, async msg => {
-    const subs = await api.getSub();
-    const res = await api.getRandom(subs);
+    const subs = await RedditWrapper.SubReddit();
+    const res = await RedditWrapper.RandomPost(subs);
     const data = res[0].data;
     if (data.post_hint == 'image') {
         bot.sendMessage(msg.chat.id, `${data.title} \n 

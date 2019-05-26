@@ -1,10 +1,10 @@
 const { bot } = require('./bot');
-const api = require('../api');
+const { RedditWrapper } = require('reddit-simple');
 
 bot.onText(/\/random/, async msg => {
     bot.once('message', async msg => {
         if (msg.text) {
-            const res = await api.getRandom(msg.text);
+            const res = await RedditWrapper.RandomPost(msg.text);
             if (!(res.length) == 0) {
                 const data = res[0].data;
                 if (data.post_hint == 'image') {
@@ -51,11 +51,11 @@ bot.onText(/\/random/, async msg => {
         }
 
     })
-    const recommend = await api.getSub();
+    const recommend = await RedditWrapper.SubReddit();
     bot.sendMessage(msg.chat.id, `🔍 Get Random posts from Sub-reddits. Wanna Try ${recommend}`)
 })
 
 bot.onText(/\/sub/, async msg => {
-    const res = await api.stalk('kiru0');
+    const res = await api.test();
     console.log(res)
 })

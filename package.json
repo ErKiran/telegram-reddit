@@ -26,6 +26,7 @@
   "homepage": "https://github.com/ErKiran/telegram-reddit#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "node-telegram-bot-api": "^0.30.0"
+    "node-telegram-bot-api": "^0.30.0",
+    "reddit-simple": "^1.0.0"
   }
 }
