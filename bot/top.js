@@ -1,12 +1,12 @@
 const { bot } = require('./bot');
-const { RedditWrapper } = require('reddit-simple');
+const { RedditSimple } = require('reddit-simple');
 const keyboard = require('../keyboard');
 
 
 bot.onText(/\/top/, async msg => {
     bot.once('message', async msg => {
         if (msg.text) {
-            const res = await RedditWrapper.TopPost(msg.text);
+            const res = await RedditSimple.TopPost(msg.text);
             if (!(res.length) == 0) {
                 const data = res[0].data;
                 if (data.post_hint == 'image') {
@@ -53,6 +53,6 @@ bot.onText(/\/top/, async msg => {
             }
         }
     })
-    const recommend = await RedditWrapper.SubReddit();
+    const recommend = await RedditSimple.SubReddit();
     bot.sendMessage(msg.chat.id, `🔍 Search the sub-reddit to get Top Voted Post. Try ${recommend}`)
 })

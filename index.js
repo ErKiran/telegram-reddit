@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 require('./bot/top');
 require('./bot/random');
 require('./bot/start');

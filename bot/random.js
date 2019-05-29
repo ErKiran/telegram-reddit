@@ -1,10 +1,10 @@
 const { bot } = require('./bot');
-const { RedditWrapper } = require('reddit-simple');
+const { RedditSimple } = require('reddit-simple');
 
 bot.onText(/\/random/, async msg => {
     bot.once('message', async msg => {
         if (msg.text) {
-            const res = await RedditWrapper.RandomPost(msg.text);
+            const res = await RedditSimple.RandomPost(msg.text);
             if (!(res.length) == 0) {
                 const data = res[0].data;
                 if (data.post_hint == 'image') {
@@ -51,7 +51,7 @@ bot.onText(/\/random/, async msg => {
         }
 
     })
-    const recommend = await RedditWrapper.SubReddit();
+    const recommend = await RedditSimple.SubReddit();
     bot.sendMessage(msg.chat.id, `🔍 Get Random posts from Sub-reddits. Wanna Try ${recommend}`)
 })
 
