@@ -6,5 +6,33 @@ module.exports = {
             ['🔝 /top', '🔀 /random'],
             ['🍀 /feeling_lucky', '🕵️ /stalk']
         ]
+    },
+    subscribe: {
+        inline_keyboard: [
+            [
+                {
+                    text: '🔔 Subscribe',
+                    callback_data: 'Subscribe'
+                },
+                {
+                    text: `📵Don't Subscribe `,
+                    callback_data: 'No Subscription'
+                }
+            ]
+        ]
+    },
+    options: {
+        inline_keyboard: [
+            [
+                {
+                    text: 'Load More',
+                    callback_data: 'Load More'
+                },
+                {
+                    text: 'Another Sub-reddit',
+                    callback_data: 'Another Subreddit'
+                }
+            ]
+        ]
     }
 }    
