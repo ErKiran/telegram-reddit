@@ -3,7 +3,7 @@ const { RedditSimple } = require('reddit-simple');
 const Post = require('../models/subreddit');
 const keyboard = require('../keyboard');
 const { dynamic } = require('../keyboard/dynamic');
-const  sub = {};
+const sub = {};
 
 
 bot.onText(/\/top/, async msg => {
@@ -18,6 +18,7 @@ bot.onText(/\/top/, async msg => {
                     subreddit: data.subreddit
                 });
                 sub.subreddit = data.subreddit;
+                sub.type = 'top';
                 const found = await Post.findOne({ telegram_id: msg.chat.id, title: data.title, subreddit: data.subreddit });
                 if (!found) {
                     await newPost.save();
@@ -70,3 +71,7 @@ bot.onText(/\/top/, async msg => {
     const recommend = await RedditSimple.AllSubReddit();
     bot.sendMessage(msg.chat.id, `🔍 Search the sub-reddit to get Top Voted Post. OR choose one from keyboards`, { reply_markup: dynamic(recommend) })
 })
+
+module.exports = {
+    sub
+}

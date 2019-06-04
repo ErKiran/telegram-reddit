@@ -7,6 +7,9 @@ module.exports = {
             ['🍀 /feeling_lucky', '🕵️ /stalk']
         ]
     },
+    empty_keyboard: {
+        inline_keyboard: []
+    },
     subscribe: {
         inline_keyboard: [
             [
