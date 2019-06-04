@@ -3,7 +3,7 @@ const { RedditSimple } = require('reddit-simple');
 const Post = require('../models/subreddit');
 const keyboard = require('../keyboard');
 const { dynamic } = require('../keyboard/dynamic');
-const { helpers } = require('./post_helper');
+const { post_helpers } = require('./helper')
 const sub = {};
 
 
@@ -24,7 +24,7 @@ bot.onText(/\/top/, async msg => {
                 if (!found) {
                     await newPost.save();
                 }
-                helpers(data, msg);
+                post_helpers(data, msg.chat.id);
                 setTimeout(() => { bot.sendMessage(msg.chat.id, 'Do you like to get post about this subreddit in future', { reply_markup: keyboard.subscribe }) }, 1500)
             } else {
                 bot.sendMessage(msg.chat.id, `There is no such sub-reddit as ${msg.text}`);

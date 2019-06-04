@@ -18,7 +18,7 @@ module.exports = {
                     callback_data: 'Subscribe'
                 },
                 {
-                    text: `📵Don't Subscribe `,
+                    text: `🔕Don't Subscribe `,
                     callback_data: 'No Subscription'
                 }
             ]
@@ -28,12 +28,22 @@ module.exports = {
         inline_keyboard: [
             [
                 {
-                    text: 'Load More',
+                    text: '⌛Load More',
                     callback_data: 'Load More'
                 },
                 {
-                    text: 'Another Sub-reddit',
+                    text: '🌀Another Sub-reddit',
                     callback_data: 'Another Subreddit'
+                }
+            ]
+        ]
+    },
+    rewind: {
+        inline_keyboard: [
+            [
+                {
+                    text: '🔃 More',
+                    callback_data: 'Rewind'
                 }
             ]
         ]

@@ -1,6 +1,6 @@
 const { bot } = require('./bot');
 const { RedditSimple } = require('reddit-simple')
-const keyboard = require('../keyboard');
+const { spy } = require('../keyboard/dynamic');
 
 bot.onText(/\/stalk/, async msg => {
     bot.once('message', async msg => {
@@ -8,8 +8,10 @@ bot.onText(/\/stalk/, async msg => {
             const res = await RedditSimple.SpyRedditor(msg.text);
             if (!(res.length == 0)) {
                 res.map(i => {
-                    bot.sendMessage(msg.chat.id, `${i.data.body}\n ${i.data.link_permalink}`)
+                    bot.sendMessage(msg.chat.id, `${i.body}\n ${i.link_permalink}`)
                 })
+                setTimeout(() => bot.sendMessage(msg.chat.id, 'What would you like to do?', { reply_markup: spy(msg.text) }), 5000)
+
             }
             else {
                 bot.sendMessage(msg.chat.id, `😞 We couldn't find the any redditors with username ${msg.text}`);

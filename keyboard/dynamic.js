@@ -8,5 +8,22 @@ module.exports = {
             }]))
         }
         return opts;
+    },
+    spy: function spy(name) {
+        const opts = {
+            inline_keyboard: [
+                [
+                    {
+                        text: `👀 Keep eye on ${name}`,
+                        callback_data: 'Eye On'
+                    },
+                    {
+                        text: `🙈 Don't keep eye ${name}`,
+                        callback_data: 'Key off'
+                    }
+                ]
+            ]
+        }
+        return opts;
     }
 }
