@@ -10,6 +10,7 @@ bot.onText(/\/start/, async msg => {
         language_code: msg.from.language_code
     })
     const check = await User.find({ telegram_id: msg.chat.id });
+
     if ((check.length == 0)) {
         await newUser.save();
     }
