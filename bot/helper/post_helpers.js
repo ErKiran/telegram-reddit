@@ -39,5 +39,5 @@ from:<b>${data.subreddit_name_prefixed}</b>
             }
             bot.sendMessage(msg, `Follow Discussion on \n ${data.url}`)
         }
-    },
+    }
 }

@@ -1,5 +1,6 @@
 const { bot } = require('./bot');
 const { sub } = require('./top');
+const { rand } = require('./helper/random_helper');
 const { RedditSimple } = require('reddit-simple');
 const keyboard = require('../keyboard');
 const Sub = require('../models/subscription');
@@ -10,7 +11,7 @@ bot.on('callback_query', async query => {
     const messageId = query.message.message_id;
     switch (query.data) {
         case 'Load More':
-            const res = await RedditSimple.RandomPost(sub.subreddit);
+            const res = await RedditSimple.RandomPost(rand.subreddit);
             const data = res[0].data;
             post_helpers(data, chatId);
             setTimeout(() => { bot.sendMessage(chatId, 'Choose a action', { reply_markup: keyboard.options }) }, 1500);

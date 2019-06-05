@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Rand = new mongoose.Schema({
+    telegram_id: Number,
+    title: String,
+    subreddit: String
+})
 
-module.exports = Random = mongoose.model('Random', new Schema({}, { strict: false }))
+module.exports = Random = mongoose.model('random', Rand);

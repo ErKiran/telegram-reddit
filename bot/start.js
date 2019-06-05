@@ -2,6 +2,7 @@ const { bot } = require('./bot');
 const keyboard = require('../keyboard');
 const User = require('../models/user');
 
+
 bot.onText(/\/start/, async msg => {
     const newUser = new User({
         telegram_id: msg.chat.id,
