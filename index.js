@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Mongo } = require('./config/config');
-const Random = require('./models/random');
 
 
 process.setMaxListeners(0);

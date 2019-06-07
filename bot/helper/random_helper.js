@@ -17,8 +17,8 @@ module.exports = {
                         title: data.title,
                         subreddit: data.subreddit
                     });
-                    const found = await Random.findOne({ telegram_id: msg.chat.id, title: data.title, subreddit: data.subreddit });
-                    if (!found) {
+                    const found = await Random.find({ telegram_id: msg.chat.id, title: data.title, subreddit: data.subreddit });
+                    if (found.length == 0 || found == 'undefined' || found == null) {
                         await newPost.save();
                     }
                     rand.subreddit = data.subreddit;

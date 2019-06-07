@@ -42,7 +42,7 @@ module.exports = {
         inline_keyboard: [
             [
                 {
-                    text: '🔃 More',
+                    text: '🎁 Unbox',
                     callback_data: 'Rewind'
                 }
             ]

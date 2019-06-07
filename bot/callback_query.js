@@ -4,6 +4,7 @@ const { rand } = require('./helper/random_helper');
 const { RedditSimple } = require('reddit-simple');
 const keyboard = require('../keyboard');
 const Sub = require('../models/subscription');
+const Random = require('../models/random');
 const { lucky_helper, random_helper, post_helpers } = require('./helper')
 
 bot.on('callback_query', async query => {
@@ -13,8 +14,20 @@ bot.on('callback_query', async query => {
         case 'Load More':
             const res = await RedditSimple.RandomPost(rand.subreddit);
             const data = res[0].data;
-            post_helpers(data, chatId);
-            setTimeout(() => { bot.sendMessage(chatId, 'Choose a action', { reply_markup: keyboard.options }) }, 1500);
+            const newPost = new Random({
+                telegram_id: chatId,
+                title: data.title,
+                subreddit: data.subreddit
+            });
+            const found = await Random.find({ telegram_id: chatId, title: data.title, subreddit: data.subreddit });
+            if (found.length == 0 || found == 'undefined' || found == null) {
+                await newPost.save();
+                post_helpers(data, chatId);
+                setTimeout(() => { bot.sendMessage(chatId, 'Choose a action', { reply_markup: keyboard.options }) }, 1500);
+            }
+            else {
+                bot.editMessageText('We are all 🏁🏁done here. Check back later for newer post 😉😉', { chat_id: chatId, message_id: messageId, reply_markup: keyboard.empty_keyboard });
+            }
             break
         case 'Another Subreddit':
             bot.sendMessage(chatId, `🔍 Get Random posts from Sub-reddits`);
