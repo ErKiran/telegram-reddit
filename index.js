@@ -18,3 +18,4 @@ require('./bot/start');
 require('./bot/feeling_lucky');
 require('./bot/stalkuser');
 require('./bot/callback_query');
+require('./bot/sendMessage');
