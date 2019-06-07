@@ -1,9 +1,11 @@
 const { bot } = require('./bot');
 const keyboard = require('../keyboard');
 const User = require('../models/user');
+const { sendMessage } = require('./sendMessage');
 
 
 bot.onText(/\/start/, async msg => {
+    await sendMessage(msg.chat.id);
     const newUser = new User({
         telegram_id: msg.chat.id,
         first_name: msg.chat.first_name,

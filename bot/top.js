@@ -16,7 +16,8 @@ bot.onText(/\/top/, async msg => {
                 const newPost = new Post({
                     telegram_id: msg.chat.id,
                     title: data.title,
-                    subreddit: data.subreddit
+                    subreddit: data.subreddit,
+                    inserted: Date.now()
                 });
                 sub.subreddit = data.subreddit;
                 sub.type = 'top';

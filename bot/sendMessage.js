@@ -1,5 +1,6 @@
 const { RedditSimple } = require('reddit-simple');
 const { bot } = require('./bot');
+const { post_helpers } = require('./helper/post_helpers');
 const Post = require('../models/subreddit');
 const Sub = require('../models/subscription');
 
@@ -8,23 +9,30 @@ async function sendMessage(id) {
     const subscribedSub = res.map(i => i.subreddit);
 
     subscribedSub.forEach(async i => {
-        const filter = await Post.find({ telegram_id: id, subreddit: i });
-        let test = [];
-        //console.log(filter.filter(i => i.subreddit));
-        const rr = await filter.map(i => i.title);
-        await test.push(rr);
-        console.log(test);
+        const filter = await Post.find({ telegram_id: id, subreddit: i }).limit(1).sort({ $natural: -1 });
+        let obj1 = {
+            title: filter.map(i => i.title)[0],
+            subreddit: filter.map(i => i.subreddit)[0]
+        };
         const current = await RedditSimple.TopPost(i);
-        // console.log(current[0].data);
         const { title, subreddit } = current[0].data;
-        console.log(title, subreddit);
-
-        // console.log(test);
+        let obj2 = {
+            title,
+            subreddit
+        }
+        if (obj1.subreddit == obj2.subreddit) {
+            if (obj1.title == obj2.title) {
+            }
+            else if (obj1.title !== obj2.title) {
+                console.log(obj1)
+                const newdata = await RedditSimple.TopPost(obj1.subreddit);
+                const msgtopost = newdata[0].data;
+                post_helpers(msgtopost, id)
+            }
+        }
     })
-    return subscribedSub;
 }
 
-bot.onText(/\/send/, async msg => {
-    const res = await sendMessage(msg.chat.id);
-    console.log(res)
-})
+module.exports = {
+    sendMessage
+}
