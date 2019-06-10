@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const http = require('http');
 const { MLAB } = require('./config/key');
 
 
@@ -10,12 +11,15 @@ mongoose
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-
-
-require('./bot/top');
-require('./bot/random');
-require('./bot/start');
-require('./bot/feeling_lucky');
-require('./bot/stalkuser');
-require('./bot/callback_query');
-require('./bot/sendMessage');
+http.createServer(function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write('Hello World!');
+    require('./bot/top');
+    require('./bot/random');
+    require('./bot/start');
+    require('./bot/feeling_lucky');
+    require('./bot/stalkuser');
+    require('./bot/callback_query');
+    require('./bot/sendMessage');
+    res.end();
+}).listen(5000);

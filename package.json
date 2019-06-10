@@ -29,8 +29,5 @@
     "mongoose": "^5.5.12",
     "node-telegram-bot-api": "^0.30.0",
     "reddit-simple": "^0.1.1"
-  },
-  "devDependencies": {
-    "pm2": "^3.5.1"
   }
 }
