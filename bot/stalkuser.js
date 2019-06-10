@@ -10,7 +10,7 @@ bot.onText(/\/stalk/, async msg => {
                 res.map(i => {
                     bot.sendMessage(msg.chat.id, `${i.body}\n ${i.link_permalink}`)
                 })
-                setTimeout(() => bot.sendMessage(msg.chat.id, 'What would you like to do?', { reply_markup: spy(msg.text) }), 5000)
+                setTimeout(() => bot.sendMessage(msg.chat.id, 'What would you like to do?', { reply_markup: spy(msg.text) }), 1000)
 
             }
             else {

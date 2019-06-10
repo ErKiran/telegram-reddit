@@ -26,7 +26,7 @@ module.exports = {
                 } else {
                     bot.sendMessage(msg.chat.id, `There is no such sub-reddit as ${msg.text}`)
                 }
-                setTimeout(() => { bot.sendMessage(msg.chat.id, 'Choose a action', { reply_markup: keyboard.options }) }, 1500)
+                setTimeout(() => { bot.sendMessage(msg.chat.id, 'Choose a action', { reply_markup: keyboard.options }) }, 500)
             }
         })
     },

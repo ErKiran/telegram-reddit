@@ -8,6 +8,6 @@ module.exports = {
         const res = await RedditSimple.RandomPost(subs);
         const data = res[0].data;
         post_helpers(data, msg);
-        setTimeout(() => bot.sendMessage(msg, 'Do you like to load more', { reply_markup: keyboard.rewind }), 5000)
+        setTimeout(() => bot.sendMessage(msg, 'Do you like to load more', { reply_markup: keyboard.rewind }), 1000)
     }
 }
