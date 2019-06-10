@@ -5,7 +5,7 @@ const { sendMessage } = require('./sendMessage');
 
 
 bot.onText(/\/start/, async msg => {
-    await sendMessage(msg.chat.id);
+    //await sendMessage(msg.chat.id);
     const newUser = new User({
         telegram_id: msg.chat.id,
         first_name: msg.chat.first_name,
