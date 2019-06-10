@@ -22,4 +22,4 @@ http.createServer(function (req, res) {
     require('./bot/callback_query');
     require('./bot/sendMessage');
     res.end();
-}).listen(5000);
+}).listen(process.env.PORT || 5000);
