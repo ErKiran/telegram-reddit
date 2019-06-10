@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const { Mongo } = require('./config/config');
+const { MLAB } = require('./config/key');
 
 
 process.setMaxListeners(0);
 mongoose.set('useCreateIndex', true);
 
 mongoose
-    .connect(Mongo, { useNewUrlParser: true })
+    .connect(MLAB, { useNewUrlParser: true })
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
