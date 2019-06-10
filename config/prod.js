@@ -1,4 +1,4 @@
 module.exports = {
-    telegram_token: process.env.TOKEN,
-    mlab_token: process.env.MLAB
+    TOKEN: process.env.TOKEN,
+    MLAB: process.env.MLAB
 };	
