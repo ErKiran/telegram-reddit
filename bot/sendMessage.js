@@ -4,7 +4,7 @@ const Post = require('../models/subreddit');
 const Sub = require('../models/subscription');
 
 
-setInterval(() => {
+setInterval(async () => {
     const res = await Sub.find({ telegram_id: id, type: 'top' });
     const subscribers = res.map(i => i.telegram_id);
     const subscribedSub = res.map(i => i.subreddit);
