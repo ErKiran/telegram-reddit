@@ -9,6 +9,15 @@ module.exports = {
         }
         return opts;
     },
+    dynamic_inline: function dynamic(name) {
+        const opts = {
+            inline_keyboard: name.map(i => ([{
+                text: i,
+                callback_data: i
+            }]))
+        }
+        return opts;
+    },
     spy: function spy(name) {
         const opts = {
             inline_keyboard: [

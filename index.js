@@ -18,6 +18,7 @@ require('./bot/feeling_lucky');
 require('./bot/stalkuser');
 require('./bot/callback_query');
 require('./bot/sendMessage');
+require('./bot/subs');
 
 http.createServer(function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });

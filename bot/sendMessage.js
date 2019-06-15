@@ -1,13 +1,13 @@
 const { RedditSimple } = require('reddit-simple');
-const { bot } = require('./bot');
 const { post_helpers } = require('./helper/post_helpers');
 const Post = require('../models/subreddit');
 const Sub = require('../models/subscription');
 
-async function sendMessage(id) {
-    const res = await Sub.find({ telegram_id: id, type: 'top' });
-    const subscribedSub = res.map(i => i.subreddit);
 
+setInterval(() => {
+    const res = await Sub.find({ telegram_id: id, type: 'top' });
+    const subscribers = res.map(i => i.telegram_id);
+    const subscribedSub = res.map(i => i.subreddit);
     subscribedSub.forEach(async i => {
         const filter = await Post.find({ telegram_id: id, subreddit: i }).limit(1).sort({ $natural: -1 });
         let obj1 = {
@@ -27,12 +27,9 @@ async function sendMessage(id) {
                 console.log(obj1)
                 const newdata = await RedditSimple.TopPost(obj1.subreddit);
                 const msgtopost = newdata[0].data;
-                post_helpers(msgtopost, id)
+                post_helpers(msgtopost, subscribers);
             }
         }
     })
-}
 
-module.exports = {
-    sendMessage
-}
+}, 10000)

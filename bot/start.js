@@ -19,3 +19,7 @@ bot.onText(/\/start/, async msg => {
     }
     bot.sendMessage(msg.chat.id, `Welcome`, { reply_markup: keyboard.startkeyboard })
 })
+
+bot.onText(/\/text/, async msg => {
+    sendMessage(msg.chat.id)
+})
