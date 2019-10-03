@@ -39,6 +39,12 @@ bot.on('callback_query', async query => {
         case 'Rewind':
             lucky_helper(chatId)
             break
+        case 'Add_To_List':
+            bot.sendMessage(chatId, 'Added')
+            break
+        case 'Remove_From_List':
+            bot.sendMessage(chatId, 'Removed')
+            break
         case 'Subscribe':
             const check = await Sub.find({ telegram_id: chatId, subreddit: sub.subreddit });
             if (check.length == 0) {

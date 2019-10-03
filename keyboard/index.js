@@ -7,6 +7,28 @@ module.exports = {
             ['🍀 /feeling_lucky', '🕵️ /stalk']
         ]
     },
+    customize: {
+        inline_keyboard: [
+            [{
+                text: '➕Add to List',
+                callback_data: 'Add_To_List'
+            },
+            {
+                text: '❌Remove from List',
+                callback_data: 'Remove_From_List'
+            }
+            ]
+        ]
+    },
+    customize_add: {
+        inline_keyboard: [
+            [{
+                text: '➕Add to List',
+                callback_data: 'Add_To_List'
+            }
+            ]
+        ]
+    },
     empty_keyboard: {
         inline_keyboard: []
     },
