@@ -1,4 +1,4 @@
-/*const { RedditSimple } = require('reddit-simple');
+const { RedditSimple } = require('reddit-simple');
 const { post_helpers } = require('./helper/post_helpers');
 const Post = require('../models/subreddit');
 const Sub = require('../models/subscription');
@@ -33,4 +33,3 @@ setInterval(async () => {
     })
 
 }, 10000)
-*/

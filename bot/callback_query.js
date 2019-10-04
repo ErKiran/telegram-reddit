@@ -5,7 +5,7 @@ const { RedditSimple } = require('reddit-simple');
 const keyboard = require('../keyboard');
 const Sub = require('../models/subscription');
 const Random = require('../models/random');
-const { lucky_helper, random_helper, post_helpers, addToFav } = require('./helper')
+const { lucky_helper, random_helper, post_helpers, addToFav, editToFav, removeFromFav } = require('./helper')
 
 bot.on('callback_query', async query => {
     const chatId = query.from.id;
@@ -41,10 +41,12 @@ bot.on('callback_query', async query => {
             break
         case 'Add_To_List':
             addToFav(query, bot)
-            //bot.sendMessage(chatId, 'Added')
+            break
+        case 'Edit_To_List':
+            editToFav(query, bot)
             break
         case 'Remove_From_List':
-            bot.sendMessage(chatId, 'Removed')
+            removeFromFav(query, bot)
             break
         case 'Subscribe':
             const check = await Sub.find({ telegram_id: chatId, subreddit: sub.subreddit });

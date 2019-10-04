@@ -4,6 +4,7 @@ module.exports = {
         one_time_keyboard: true,
         keyboard: [
             ['🔝 /top', '🔀 /random'],
+            ['👤/customize'],
             ['🍀 /feeling_lucky', '🕵️ /stalk']
         ]
     },
@@ -11,7 +12,7 @@ module.exports = {
         inline_keyboard: [
             [{
                 text: '➕Add to List',
-                callback_data: 'Add_To_List'
+                callback_data: 'Edit_To_List'
             },
             {
                 text: '❌Remove from List',

@@ -1,6 +1,7 @@
 const { bot } = require('./bot');
 const { RedditSimple } = require('reddit-simple');
 const Post = require('../models/subreddit');
+const Fav = require('../models/favourite');
 const keyboard = require('../keyboard');
 const { dynamic } = require('../keyboard/dynamic');
 const { post_helpers } = require('./helper')
@@ -34,7 +35,14 @@ bot.onText(/\/top/, async msg => {
         }
     })
     const recommend = await RedditSimple.AllSubReddit();
-    bot.sendMessage(msg.chat.id, `🔍 Search the sub-reddit to get Top Voted Post. OR choose one from keyboards`, { reply_markup: dynamic(recommend) })
+    const FavList = await Fav.find({ telegram_id: msg.chat.id });
+    FavList.length === 0 ? sendRecommended(msg) : sendFavourite(msg);
+    function sendRecommended(msg) {
+        bot.sendMessage(msg.chat.id, `🔍 Search the sub-reddit to get Top Voted Post. OR choose one from keyboards`, { reply_markup: dynamic(recommend) })
+    }
+    function sendFavourite(msg) {
+        bot.sendMessage(msg.chat.id, `🔍 Search the sub-reddit to get Top Voted Post. OR choose one from keyboards`, { reply_markup: dynamic(FavList[0].subreddit.map(i => `${i}\n`)) })
+    }
 })
 
 module.exports = {
