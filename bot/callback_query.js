@@ -5,7 +5,7 @@ const { RedditSimple } = require('reddit-simple');
 const keyboard = require('../keyboard');
 const Sub = require('../models/subscription');
 const Random = require('../models/random');
-const { lucky_helper, random_helper, post_helpers } = require('./helper')
+const { lucky_helper, random_helper, post_helpers, addToFav } = require('./helper')
 
 bot.on('callback_query', async query => {
     const chatId = query.from.id;
@@ -40,7 +40,8 @@ bot.on('callback_query', async query => {
             lucky_helper(chatId)
             break
         case 'Add_To_List':
-            bot.sendMessage(chatId, 'Added')
+            addToFav(query, bot)
+            //bot.sendMessage(chatId, 'Added')
             break
         case 'Remove_From_List':
             bot.sendMessage(chatId, 'Removed')

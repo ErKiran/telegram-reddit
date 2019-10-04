@@ -3,9 +3,7 @@ const fav = new mongoose.Schema({
     telegram_id: { type: Number },
     subreddit: [
         {
-            name: {
-                type: String
-            }
+            type: String
         }
     ]
 });
