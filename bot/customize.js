@@ -7,7 +7,6 @@ const { dynamic } = require('../keyboard/dynamic');
 
 bot.onText(/\/customize/, async msg => {
     const FavoriteList = await Fav.find({ telegram_id: msg.chat.id });
-    console.log(FavoriteList)
     FavoriteList.length === 0 ? EmptyFav(msg) : FavExists(msg);
     function EmptyFav(msg) {
         bot.sendMessage(msg.chat.id, `You don't have any Favourite Sub Reddit. Please add some`, { reply_markup: customize_add })
