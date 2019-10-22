@@ -47,6 +47,20 @@ module.exports = {
             ]
         ]
     },
+    is_subscribed: {
+        inline_keyboard: [
+            [
+                {
+                    text: '🔔 Notification On',
+                    callback_data: 'Keep On Subscription'
+                },
+                {
+                    text: `🔕UnSubscribe `,
+                    callback_data: 'Un Subscribe'
+                }
+            ]
+        ]
+    },
     options: {
         inline_keyboard: [
             [

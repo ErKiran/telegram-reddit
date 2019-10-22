@@ -36,6 +36,13 @@ bot.on('callback_query', async query => {
         case 'No Subscription':
             bot.editMessageText('No worries.Happy Browsing💻', { chat_id: chatId, message_id: messageId, reply_markup: keyboard.empty_keyboard });
             break
+        case 'Keep On Subscription':
+            bot.sendMessage(chatId, `You will get update whenever top post on ${sub.subreddit} changes`)
+            break
+        case 'Un Subscribe':
+            await Sub.findOneAndDelete({ telegram_id: chatId, subreddit: sub.subreddit });
+            bot.sendMessage(chatId, `You have unsubscribed ${sub.subreddit} Subreddit. You won't be notified about top post in this Sub Reddit.`)
+            break
         case 'Rewind':
             lucky_helper(chatId)
             break

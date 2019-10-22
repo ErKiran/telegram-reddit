@@ -2,6 +2,7 @@ const { bot } = require('./bot');
 const { RedditSimple } = require('reddit-simple');
 const Post = require('../models/subreddit');
 const Fav = require('../models/favourite');
+const Sub = require('../models/subscription');
 const keyboard = require('../keyboard');
 const { dynamic } = require('../keyboard/dynamic');
 const { post_helpers } = require('./helper')
@@ -27,7 +28,13 @@ bot.onText(/\/top/, async msg => {
                     await newPost.save();
                 }
                 post_helpers(data, msg.chat.id);
-                setTimeout(() => { bot.sendMessage(msg.chat.id, 'Do you like to get post about this subreddit in future', { reply_markup: keyboard.subscribe }) }, 1500)
+                const is_subscribed = await Sub.find({ telegram_id: msg.chat.id, type: 'top', subreddit: data.subreddit })
+                if (is_subscribed.length !== 0) {
+                    setTimeout(() => { bot.sendMessage(msg.chat.id, 'You have already Subscribed this sub-reddit and you will be getting Notifications about this sub-reddit now on.', { reply_markup: keyboard.is_subscribed }) }, 1500)
+                }
+                else {
+                    setTimeout(() => { bot.sendMessage(msg.chat.id, 'Do you like to get post about this subreddit in future', { reply_markup: keyboard.subscribe }) }, 1500)
+                }
             } else {
                 bot.sendMessage(msg.chat.id, `There is no such sub-reddit as ${msg.text}`);
                 bot.sendMessage(msg.chat.id, `Explore More`, { reply_markup: keyboard.startkeyboard });
