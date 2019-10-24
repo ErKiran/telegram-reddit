@@ -2,6 +2,7 @@ const { RedditSimple } = require('reddit-simple');
 const { post_helpers } = require('./helper/post_helpers');
 const Post = require('../models/subreddit');
 const Sub = require('../models/subscription');
+const SendedMessage = require('../models/sended_msg');
 
 
 (async () => {
@@ -18,13 +19,24 @@ const Sub = require('../models/subscription');
             title,
             subreddit
         }
+
         if (obj1.subreddit === obj2.subreddit) {
-            if (obj1.title === obj2.title) {
-            }
-            else if (obj1.title !== obj2.title) {
-                const newdata = await RedditSimple.TopPost(obj1.subreddit);
-                const msgtopost = newdata[0].data;
-                post_helpers(msgtopost, i.telegram_id);
+            if (obj1.title !== obj2.title) {
+                const checkifMessageExistinDB = await SendedMessage.find({ telegram_id: i.telegram_id, title: obj2.title, subreddit: obj2.subreddit });
+                if (checkifMessageExistinDB.length === 0) {
+                    const newMessage = new SendedMessage({
+                        telegram_id: i.telegram_id,
+                        title: obj2.title,
+                        subreddit: obj2.subreddit,
+                        type: 'sended_msg',
+                        inserted: Date.now()
+                    })
+                    await newMessage.save()
+                    const newdata = await RedditSimple.TopPost(obj1.subreddit);
+                    const msgtopost = newdata[0].data;
+                    post_helpers(msgtopost, i.telegram_id);
+                }
+
             }
         }
     })
