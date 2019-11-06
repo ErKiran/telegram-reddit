@@ -17,7 +17,8 @@ bot.on('callback_query', async query => {
             const newPost = new Random({
                 telegram_id: chatId,
                 title: data.title,
-                subreddit: data.subreddit
+                subreddit: data.subreddit,
+                created: Date.now()
             });
             const found = await Random.find({ telegram_id: chatId, title: data.title, subreddit: data.subreddit });
             if (found.length == 0 || found == 'undefined' || found == null) {
@@ -61,7 +62,8 @@ bot.on('callback_query', async query => {
                 const newSub = new Sub({
                     telegram_id: chatId,
                     subreddit: sub.subreddit,
-                    type: sub.type
+                    type: sub.type,
+                    created: Date.now()
                 })
                 await newSub.save();
                 bot.editMessageText(`Thank you for subscribing us. We will be sending for message from subreddit <b>${sub.subreddit}</b> whenever the <b>${sub.type}</b> post changes`, { chat_id: chatId, message_id: messageId, reply_markup: keyboard.empty_keyboard, parse_mode: 'HTML' });

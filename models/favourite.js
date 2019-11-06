@@ -5,7 +5,8 @@ const fav = new mongoose.Schema({
         {
             type: String
         }
-    ]
+    ],
+    created: Date
 });
 
 module.exports = Fav = mongoose.model('favSubreddit', fav);

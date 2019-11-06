@@ -15,7 +15,8 @@ module.exports = {
                     const newPost = new Random({
                         telegram_id: msg.chat.id,
                         title: data.title,
-                        subreddit: data.subreddit
+                        subreddit: data.subreddit,
+                        created: Date.now()
                     });
                     const found = await Random.find({ telegram_id: msg.chat.id, title: data.title, subreddit: data.subreddit });
                     if (found.length == 0 || found == 'undefined' || found == null) {

@@ -1,4 +1,4 @@
-const { RedditSimple } = require('reddit-simple');
+/*const { RedditSimple } = require('reddit-simple');
 const { post_helpers } = require('./helper/post_helpers');
 const Post = require('../models/subreddit');
 const Sub = require('../models/subscription');
@@ -36,8 +36,8 @@ const SendedMessage = require('../models/sended_msg');
                     const msgtopost = newdata[0].data;
                     post_helpers(msgtopost, i.telegram_id);
                 }
-
             }
         }
     })
 })()
+*/

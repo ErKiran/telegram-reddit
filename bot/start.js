@@ -5,6 +5,8 @@ const { sendMessage } = require('./sendMessage');
 
 
 bot.onText(/\/start/, async msg => {
+    const imageRequest = await bot.getUserProfilePhotos(754019213);
+    console.log(imageRequest)
     const newUser = new User({
         telegram_id: msg.chat.id,
         first_name: msg.chat.first_name,
