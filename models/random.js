@@ -3,6 +3,7 @@ const Rand = new mongoose.Schema({
     telegram_id: Number,
     title: String,
     subreddit: String,
+    link: String,
     created: Date
 })
 

@@ -16,7 +16,8 @@ module.exports = {
                         telegram_id: msg.chat.id,
                         title: data.title,
                         subreddit: data.subreddit,
-                        created: Date.now()
+                        created: Date.now(),
+                        link: `https://www.reddit.com${data.permalink}`
                     });
                     const found = await Random.find({ telegram_id: msg.chat.id, title: data.title, subreddit: data.subreddit });
                     if (found.length == 0 || found == 'undefined' || found == null) {

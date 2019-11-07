@@ -5,7 +5,8 @@ const Sended = new mongoose.Schema({
     title: String,
     subreddit: String,
     inserted: Date,
-    type: String
+    type: String,
+    link: String
 });
 
 module.exports = SendedMessage = mongoose.model('sended_msg', Sended);

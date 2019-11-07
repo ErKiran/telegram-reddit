@@ -14,11 +14,13 @@ bot.on('callback_query', async query => {
         case 'Load More':
             const res = await RedditSimple.RandomPost(rand.subreddit);
             const data = res[0].data;
+            console.log(data.permalink)
             const newPost = new Random({
                 telegram_id: chatId,
                 title: data.title,
                 subreddit: data.subreddit,
-                created: Date.now()
+                created: Date.now(),
+                link: `https://www.reddit.com${data.permalink}`
             });
             const found = await Random.find({ telegram_id: chatId, title: data.title, subreddit: data.subreddit });
             if (found.length == 0 || found == 'undefined' || found == null) {

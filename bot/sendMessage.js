@@ -1,4 +1,4 @@
-/*const { RedditSimple } = require('reddit-simple');
+const { RedditSimple } = require('reddit-simple');
 const { post_helpers } = require('./helper/post_helpers');
 const Post = require('../models/subreddit');
 const Sub = require('../models/subscription');
@@ -29,7 +29,8 @@ const SendedMessage = require('../models/sended_msg');
                         title: obj2.title,
                         subreddit: obj2.subreddit,
                         type: 'sended_msg',
-                        inserted: Date.now()
+                        inserted: Date.now(),
+                        link: `https://www.reddit.com${obj2.permalink}`
                     })
                     await newMessage.save()
                     const newdata = await RedditSimple.TopPost(obj1.subreddit);
@@ -40,4 +41,3 @@ const SendedMessage = require('../models/sended_msg');
         }
     })
 })()
-*/
