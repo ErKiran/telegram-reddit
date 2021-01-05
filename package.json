@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/ErKiran/telegram-reddit#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "mongoose": "^5.7.5",
     "node-telegram-bot-api": "^0.30.0",
     "reddit-simple": "^2.1.1",
