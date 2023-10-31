@@ -27,7 +27,7 @@
   "dependencies": {
     "axios": "^0.21.2",
     "mongoose": "^5.13.20",
-    "node-telegram-bot-api": "^0.30.0",
+    "node-telegram-bot-api": "^0.64.0",
     "reddit-simple": "^2.1.1",
     "winston": "^3.2.1"
   }
